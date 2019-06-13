@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="index.css">
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+		
+    </head>
+    <body>
+		
+<!--传送数据 -->
+        <div id="app">
+			<span>Message: {{ msg }}</span>
+			<br>
+			<span v-once>This will never change: {{ msg }}</span>
+        </div>
+<!-- 改变标签 -->
+        <div id="app1">
+			<span v-bind:id="msg">bind</span> <!-- 在标签的时候不能使用{{}}语法，直接用字符串调用变量 -->
+        </div>
+		
+		
+<script src="index.js"></script>
+
+    </body>
+</html>

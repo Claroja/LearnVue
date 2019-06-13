@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="index.css">
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    </head>
+    <body>
+    
+        <div id="app">
+            <p>{{ message }}</p>
+            <input v-model="message"> <!-- model方法同步更新vue.js里的数据，进行实时的渲染 -->
+        </div>
+        
+        <script src="index.js"></script>
+    </body>
+</html>
