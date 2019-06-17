@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        [v-cloak] {
+            display: none;
+        }
+        .red{
+            color:red;
+        }
+        .blue{
+            color:blue;
+        }
+    </style>
+</head>
+
+<body>
+    <p>v-clock解决因网速慢,显示{{msg}}的问题,本质就是修改样式,注意style标签的内容</p>
+    <div id="cloak">
+        <p v-cloak>{{msg}}</p>
+    </div>
+
+    <hr>
+    <p>v-text通过属性来替换标签里的内容,msg只会替换自己,而v-text则会覆盖这个标签内容,所以如果想要添加---符号,用{{msg}}</p>
+    <div id="text">
+        <p>---{{msg}}</p>
+        <p v-text="msg">---</p>
+    </div>
+    <hr>
+    <p>v-html会解析html的标签,v-text和{{msg}}的写法都不会</p>
+    <div id="html">
+        <p>{{msg}}</p>
+        <p v-text="msg"></p>
+        <p v-html="msg"></p>
+    </div>
+    <hr>
+    <p>v-bind用来将标签的属性与vue的data数据进行绑定,v-bind后的""里面会当成js表达式解析,msg是一个变量,所以可以拼贴字符串</p>
+    <div id="bind">
+        <input type="button" v-bind:value="msg+'后拼贴字符串'">
+    </div>
+
+    <hr>
+    <p>通过v-bind可以方便操作class</p>
+    <div id="class">
+        <p :class="['red',{'blue':flag}]">更改颜色</p>
+    </div>
+
+    <hr>
+    <p>通过v-bind可以方便操作style</p>
+    <div id="style">
+        <p :style="{color:'red'}">更改颜色</p>
+    </div>
+
+    <hr>
+    <p>model实现了数据的双向绑定.this.msg修改后界面会改变,这是单向的由m到v,双向的意思是由界面修改保存到this.msg,既由v到m</p>
+    <p>v-bind就是单向绑定,从m-v;而v-model是双向绑定,v-model主要用在表单元素中input select checkbox</p>
+    <div id="model">
+        <input type="text" value="hello" v-model="msg">
+        <p v-text="msg"></p>
+    </div>
+
+
+    <hr>
+    <p>v-on用来给标签绑定时间,事件的方法要在vue的methods定义</p>
+    <div id="on">
+        <input type="button" v-on:click="show">
+    </div>
+
+    <hr>
+    <p>this可以在methods中更改data里的数据,注意要想改变data里的值,需要重新赋值this.msg=this.msg-1</p>
+    <div id="this">
+        <input type="button" v-bind:value="msg" v-on:click="sub">
+    </div>
+
+
+    <hr>
+    <p>vue方法调用默认是冒泡机制,既里层的元素方法调用,外层的的元素方法也会被调用,stop可以阻止冒泡机制</p>
+    <div id="stop" @click="div">
+        <input type="button" v-on:click="btn">
+        <input type="button" v-on:click.stop="btn">
+    </div>
+
+    <hr>
+    <p>capture是捕获机制,和冒泡机制相反.捕获机制是先调用外层元素方法,再调用内层函数方法</p>
+    <div id="capture" @click.capture="div">
+        <input type="button" v-on:click="btn">
+    </div>
+
+    <hr>
+    <p>self可以用来阻止冒泡和捕获机制,意思该元素只有自己被点击时才会被触发</p>
+    <div id="self" @click.self="div">
+        <input type="button" v-on:click="btn">
+    </div>
+    <hr>
+    <p>prevent用来阻止默认行为,比如页面跳转</p>
+    <div id="prevent">
+        <a href="http://www.baidu.com">百度一下,你就知道</a><br>
+        <a href="http://www.baidu.com" @click.prevent="link">百度一下,你就知道</a>
+    </div>
+    <hr>
+    <p>once指定该方法只能被触发一次</p>
+    <div id="once">
+        <a href="http://www.baidu.com" @click.prevent.once="link">百度一下,你就知道</a>
+    </div>
+    <hr>
+    <p>v-for循环输出,数字迭代,key的作用是唯一标识元素</p>
+    <div id="for">
+        <p v-for="item in 5" :key="item">{{item}}</p>
+        <p v-for="(item,index) in list" :key="index">item:{{item}}--index:{{index}}</p>
+        <p v-for="(value,key) in map" :key="key">value:{{value}}--key:{{key}}</p>
+    </div>
+    <p>v-if是不渲染标签,v-show是将标签的display设置为none</p>
+    <div id="ifshow">
+        <input type="button" @click="flag=!flag">
+        <p v-if="flag">v-if</p>
+        <p v-show="flag">v-show</p>
+    </div>
+</body>
+
+</html>
+
+
+<test>sdfa </test>
