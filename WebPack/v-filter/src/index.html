@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id='filter'>
+        <p>过滤器用在插值和v-bind表达式</p>
+        <p>过滤器的格式  {{name | filterFn }}  在渲染name的时候先调用filterFn方法
+            过滤器分为全局过滤器(Vue.filter创建)和局部过滤器(fliters:属性创建)
+        </p>
+        <p>{{msg | msgFormat1('Format1')}}</p>
+        <p>{{msg | msgFormat2('Format2')}}</p>
+    </div>
+</body>
+</html>

@@ -125,6 +125,11 @@ var list = new Vue({
     data:{
         list: ['a','b','c','d','e'],
         map:{'key1':'value1','key2':'value2','key3':'value3'}
+    },
+    methods:{
+        show(item){
+            alert(item)
+        }
     }
 })
 var ifshow = new Vue({

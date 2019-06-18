@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <hr>
+        <h1>组件渲染</h1>
+        <p>组件只能有一个根元素,不能有两个并列的根元素</p>
+        <com1></com1>
+        <com2></com2>
+        <comt1></comt1>
+        <comt2></comt2>
+    </div>
+
+    <template id="temp1">
+        <div>
+            <p>通过template创建的全局组件comt1</p>
+        </div>
+    </template>
+    <template id="temp2">
+        <div>
+            <p>通过template创建的局部组件comt2</p>
+        </div>
+    </template>
+
+
+    <hr>
+    <div id=data>
+        <h1>组件绑定数据</h1>
+        <p>组件中可以和vue对象一样有data,methods等属性,但是data属性必须是方法(该方法的返回值就是数据变量,和vue实例的data是等效的),因为如果不是方法则不同的组件会共用同一个变量</p>
+        <com></com>
+    </div>
+    <template id="temp3">
+        <div>
+            <input type="button" value="+1" @click="count">
+            <p>{{num}}</p>
+        </div>
+    </template>
+
+    <hr>
+    <div id=prop>
+        <h1>component引用其vue对象的数据</h1>
+        <p>prop用来将父对象的数据传给组件,需要用v-bind将父对象data数据绑定给组件标签,然后再在组件标签中引入,
+            在html中组件标签内不写东西,而是要在组件的tempplate中写
+        </p>
+        <com :parentmsg="msg"></com>
+    </div>
+
+
+    <hr>
+    <div id=emit>
+        <h1>component引用其vue对象的方法</h1>
+        <p>组件也要通过v-bind方法来访问父对象的方法,然后通过emit来调用</p>
+        <com @parentfn="show"></com>
+    </div>
+
+    <template id=emitt>
+        <div>
+            <p>这是子组件</p>
+            <input type="button" value="子组件按钮" @click="myclick">
+        </div>
+    </template>
+
+
+    <hr>
+    <div id=change>
+        <h1>组件切换</h1>
+        <p>componnet标签可以用来方便的切换组件</p>
+        <a href="" @click.prevent="comName='login'">登录</a>
+        <a href="" @click.prevent="comName='register'">注册</a>
+
+        <component :is="comName"></component>
+    </div>
+</body>
+
+</html>

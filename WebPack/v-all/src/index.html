@@ -66,9 +66,15 @@
 
 
     <hr>
-    <p>v-on用来给标签绑定时间,事件的方法要在vue的methods定义</p>
+    <p>v-on用来给标签绑定事件,事件的方法要在vue的methods定义</p>
     <div id="on">
         <input type="button" v-on:click="show">
+    </div>
+
+    <hr>
+    <p>keyup用来监听键盘事件,后面可以跟具体的键位</p>
+    <div id="on">
+        <input type="button" v-on:keyup.enter="show">
     </div>
 
     <hr>
@@ -108,9 +114,9 @@
         <a href="http://www.baidu.com" @click.prevent.once="link">百度一下,你就知道</a>
     </div>
     <hr>
-    <p>v-for循环输出,数字迭代,key的作用是唯一标识元素</p>
+    <p>v-for循环输出,数字迭代,key的作用是唯一标识元素;在事件触发器中可以传入for循环的元素</p>
     <div id="for">
-        <p v-for="item in 5" :key="item">{{item}}</p>
+        <p v-for="item in 5" :key="item" @click="show(item)">{{item}}</p>
         <p v-for="(item,index) in list" :key="index">item:{{item}}--index:{{index}}</p>
         <p v-for="(value,key) in map" :key="key">value:{{value}}--key:{{key}}</p>
     </div>
