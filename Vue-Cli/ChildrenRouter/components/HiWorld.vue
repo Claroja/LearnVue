@@ -1,0 +1,16 @@
+<!-- components文件夹用来添加不同的模块,这些模块会统一被app.vue调用 -->
+<template>
+  <div>
+    <p>Hi World</p>
+    <router-link to="/hiworld/hiworld1">hiworld1</router-link>
+    <router-link to="/hiworld/hiworld2">hiworld2</router-link>
+    <router-view></router-view>
+  </div>
+
+</template>
+
+<script>
+</script>
+
+<style scoped>
+</style>

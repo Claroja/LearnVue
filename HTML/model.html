@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.bootcss.com/vue/2.6.10/vue.js"></script>
+    <style>
+        .red {
+            color: red;
+        }
+
+        .blue {
+            color: blue;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>v-model</h1>
+    <p>model实现了数据的双向绑定.this.msg修改后界面会改变,这是单向的由m到v,双向的意思是由界面修改保存到this.msg,既由v到m</p>
+    <p>v-bind就是单向绑定,从m-v;而v-model是双向绑定,v-model主要用在表单元素中input select checkbox</p>
+    <div id="model">
+        <input type="text" value="hello" v-model="msg">
+        <p v-text="msg"></p>
+    </div>
+
+    <script>
+        var model = new Vue({
+            el: '#model',
+            data: {
+        
+                msg: "hello"
+            },
+        })
+    </script>
+</body>
+
+</html>

@@ -4,12 +4,13 @@
 
 import Vue from '../node_modules/vue/dist/vue.js'
 
+//组件基本调用可以直接在js里写,也可以在html里写好再调用
 Vue.component('com1',{
     template:'<p>全局组件com1</p>'
 })
 
 Vue.component('comt1',{
-    template:'#temp1'
+    template:'#temp1'//直接调用html里的模板
 })
 
 var vm = new Vue({
@@ -27,13 +28,14 @@ var vm = new Vue({
     }
 })
 
+//组件成员
 var data = new Vue({
     el: '#data',
     components:{
         com:{
             template:'#temp3',
             data:function(){
-                return {num:0}
+                return {num:0}//返回值既是成员变量,可以直接用
             },
             methods:{
                 count(){
@@ -44,7 +46,7 @@ var data = new Vue({
     }
 })
 
-
+//component引用其vue对象的数据
 var prop = new Vue({
     el: '#prop',
     data:{
@@ -80,7 +82,7 @@ var emit = new Vue({
 
 
 
-
+//组件切换(了解)
 var change = new Vue({
     el: '#change',
     data:{

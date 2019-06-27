@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.bootcss.com/vue/2.6.10/vue.js"></script>
+</head>
+
+<body>
+    <h1>v-on</h1>
+    <p>v-on用来给标签绑定事件,事件的方法要在vue的methods定义</p>
+    <div id="on">
+        <input type="button" v-on:click="show">
+    </div>
+    <hr>
+
+    <p>1.keyup用来监听键盘事件,后面可以跟具体的键位,如果不跟则会监听所有键盘事件;
+        2.只有光标在相应的元素里才会监听(本例只有在text文本框里才会监听)
+    </p>
+    <div id="keyup">
+        <input type="text" v-on:keyup.enter="show">
+    </div>
+    <hr>
+
+    <p>this可以在methods中更改data里的数据,注意要想改变data里的值,需要重新赋值this.msg=this.msg-1</p>
+    <div id="this">
+        <input type="button" v-bind:value="msg" v-on:click="sub">
+    </div>
+    <hr>
+
+    <p>vue方法调用默认是冒泡机制,既里层的元素方法调用,外层的的元素方法也会被调用,stop可以阻止冒泡机制</p>
+    <div id="stop" @click="div">
+        <input type="button" v-on:click="btn">
+        <input type="button" v-on:click.stop="btn">
+    </div>
+    <hr>
+
+    <p>capture是捕获机制,和冒泡机制相反.捕获机制是先调用外层元素方法,再调用内层函数方法</p>
+    <div id="capture" @click.capture="div">
+        <input type="button" v-on:click="btn">
+    </div>
+    <hr>
+
+    <p>self可以用来阻止冒泡和捕获机制,意思该元素只有自己被点击时才会被触发</p>
+    <div id="self" @click.self="div">
+        <input type="button" v-on:click="btn">
+    </div>
+    <hr>
+
+    <p>prevent用来阻止默认行为,比如页面跳转,本应该直接跳转到baidu,这里进行了阻止</p>
+    <div id="prevent">
+        <a href="http://www.baidu.com">百度一下,你就知道</a><br>
+        <a href="http://www.baidu.com" @click.prevent="link">百度一下,你就知道</a>
+    </div>
+    <hr>
+
+    <p>once指定该方法只能被触发一次</p>
+    <div id="once">
+        <a href="http://www.baidu.com" @click.prevent.once="link">百度一下,你就知道</a>
+    </div>
+    <hr>
+
+    <script>
+// v-on
+//v-on用来给标签绑定事件,事件的方法要在vue的methods定义
+var on = new Vue({
+    el: '#on',
+    methods: {
+        show(){alert('hello')}
+    },
+})
+//keyup用来监听键盘事件,后面可以跟具体的键位,如果不跟则会监听所有键盘事件
+var keyup = new Vue({
+    el: '#keyup',
+    methods: {
+        show(){alert('hello')}
+    }
+})
+
+//this可以在methods中更改data里的数据,注意要想改变data里的值,需要重新赋值this.msg=this.msg-1
+var _this = new Vue({
+    el: '#this',
+    data: {
+        msg: 10
+    },
+    methods: {
+        sub() {
+            this.msg = this.msg -1
+        }
+    },
+})
+
+//vue方法调用默认是冒泡机制,既里层的元素方法调用,外层的的元素方法也会被调用,stop可以阻止冒泡机制
+var stop = new Vue({
+    el: '#stop',
+    methods: {
+        div() {
+            alert("div")
+        },
+        btn() {
+            alert("btn")
+        }
+    },
+})
+
+//capture是捕获机制,和冒泡机制相反.捕获机制是先调用外层元素方法,再调用内层函数方法
+var capture = new Vue({
+    el: '#capture',
+    methods: {
+        div() {
+            alert("div")
+        },
+        btn() {
+            alert("btn")
+        }
+    },
+})
+
+//self可以用来阻止冒泡和捕获机制,意思该元素只有自己被点击时才会被触发
+var self = new Vue({
+    el: '#self',
+    methods: {
+        div() {
+            alert("div")
+        },
+        btn() {
+            alert("btn")
+        }
+    },
+})
+
+//prevent用来阻止默认行为,比如页面跳转
+var prevent = new Vue({
+    el: '#prevent',
+    methods: {
+        link(){
+            alert("阻止跳转")
+        }
+    },
+})
+
+//once指定该方法只能被触发一次
+var once = new Vue({
+    el: '#once',
+    methods: {
+        link(){
+            alert("阻止跳转")
+        }
+    },
+})
+    </script>
+</body>
+
+</html>

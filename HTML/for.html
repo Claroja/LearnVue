@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.bootcss.com/vue/2.6.10/vue.js"></script>
+    <style>
+        .red {
+            color: red;
+        }
+
+        .blue {
+            color: blue;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>v-for</h1>
+    <p>v-for循环输出,数字迭代,key的作用是唯一标识元素;在事件触发器中可以传入for循环的元素</p>
+    <div id="for">
+        <p v-for="item in 5" :key="item" @click="show(item)">{{item}}</p>
+        <p v-for="(item,index) in list" :key="index">item:{{item}}--index:{{index}}</p>
+        <p v-for="(value,key) in map" :key="key">value:{{value}}--key:{{key}}</p>
+    </div>
+    <hr>
+
+    <script>
+        var list = new Vue({
+            el: '#for',
+            data: {
+                list: ['a', 'b', 'c', 'd', 'e'],
+                map: {
+                    'key1': 'value1',
+                    'key2': 'value2',
+                    'key3': 'value3'
+                }
+            },
+            methods: {
+                show(item) {
+                    alert(item)
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

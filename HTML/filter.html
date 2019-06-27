@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.bootcss.com/vue/2.6.10/vue.js"></script>
+</head>
+
+<body>
+    <div id='filter'>
+        <p>过滤器用在插值和v-bind表达式</p>
+        <p>过滤器的格式 {{name | filterFn }} 在渲染name的时候先调用filterFn方法
+            过滤器分为全局过滤器(Vue.filter创建)和局部过滤器(fliters:属性创建)
+        </p>
+        <p>{{msg | msgFormat1('Format1')}}</p>
+        <p>{{msg | msgFormat2('Format2')}}</p>
+    </div>
+
+    <script>
+        //过滤器定义方法filter(方法名,方法体),Vue.filter创建的是全局过滤器,所有的vue对象共享
+        Vue.filter('msgFormat1', function (msg, arg) {
+            return msg + arg
+        })
+
+        var filter = new Vue({
+            el: '#filter',
+            data: {
+                msg: 'hello'
+            },
+            filters: {
+                //也可以定义为一个vue对象私有的过滤器
+                msgFormat2: function (msg, arg) {
+                    return msg + arg
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

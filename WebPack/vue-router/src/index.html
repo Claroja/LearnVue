@@ -14,7 +14,11 @@
 <body>
     <div id="router">
         <h1>路由使用</h1>
-        <p>首先要在js里注册路由,url和组件的对应;然后在htm里使用router-view来引用</p>
+        <p>1.创建路由对象,路由对象中包含了path路径,以路径对象的组件component\n
+            2.在vue对象中注册路由
+            3.在html中使用router-view展示路由对应的组件
+            4.结合router-link可以做快速跳转
+        </p>
         <!-- <a href="#/login1">登录1</a> -->
         <!-- <a href="#/register2">注册1</a> -->
         <p>router-link可以简化自己书写a标签,默认router-link是渲染成a标签,可以通过tag属性来更改</p>
@@ -22,36 +26,43 @@
         <router-link to="/register1" tag='span'>注册1</router-link>
         <router-view></router-view>
     </div>
+    <hr>
     
     <div id="redirect">
         <h1>重定向redirect</h1>
         <p>可以把根目录路由映射到其他的路由</p>
         <router-link to="/login2">登录2</router-link>
         <router-link to="/register2" tag='span'>注册2</router-link>
-
         <router-view></router-view>
     </div>
+    <hr>
 
+    <h1>参数传递</h1>
     <div id="query">
-        <h1>路由query传参</h1>
+        <h2>路由query传参</h2>
         <p>通过路由进行传参,路由的规则不需要修改,id=10中的id不影响路由规则,就是一个参数</p>
         <router-link to="/login3?id=10">登录3</router-link>
         <router-link to="/register3" tag='span'>注册3</router-link>
         <router-view></router-view>
     </div>
+
     <div id="params">
-        <h1>路由params传参</h1>
+        <h2>路由params传参</h2>
         <p>通过路由进行传参,路由的规则不需要修改,id=10中的id不影响路由规则,就是一个参数</p>
         <router-link to="/login4/10">登录4</router-link>
         <router-link to="/register4" tag='span'>注册4</router-link>
         <router-view></router-view>
     </div>
+    <hr>
 
 
 
     <div id="children">
         <h1>children</h1>
-        <p>可以把根目录路由映射到其他的路由,子路由children中不能带斜杠/,router-link必须带斜杠/</p>
+        <p>1.可以把根目录路由映射到其他的路由,子路由children中不能带斜杠/,router-link必须带斜杠/\n
+            2.父路由的path 对应父路由的component,对应绑定div的router-view;\n
+            子路由path,对应子路由的component,对应父component中的router-view
+        </p>
         <router-link to="/account">account</router-link>
         <router-view></router-view>
     </div>
@@ -63,15 +74,18 @@
             <router-view></router-view> 
         </div>
     </template>
+    <hr>
 
-    <div id="many">
+
+    <div id="multi">
         <h1>多组件同时显示</h1>
-        <p>多组件同时显示,需要给不同的router-view添加name属性</p>
+        <p>多组件同时显示,需要给不同的router-view添加name属性,一个router-view只对应一个component</p>
         <router-link to="/all">显示所有</router-link>
         <router-view></router-view>
         <router-view name="left"></router-view>
         <router-view name="right"></router-view>
     </div>
+    <hr>
 
     <div id="active">
         <h1>配置激活路由</h1>
@@ -80,5 +94,6 @@
         <router-link to="/register7" tag='span'>注册7</router-link>
         <router-view></router-view>
     </div>
+    <hr>
 </body>
 </html>

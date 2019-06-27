@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.bootcss.com/vue/2.6.10/vue.js"></script>
+    <style>
+        [v-cloak] {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>v-text,v-html,v-cloak</h1>
+    <p>v-text通过属性来替换标签里的内容,msg只会替换自己,而v-text则会覆盖这个标签内容,所以如果想要添加---符号,用{{msg}}</p>
+    <div id="text">
+        <p>---{{msg}}</p>
+        <p v-text="msg">---</p>
+    </div>
+    <hr>
+    <p>v-html会解析html的标签,v-text和{{msg}}的写法都不会</p>
+    <div id="html">
+        <p>{{msg}}</p>
+        <p v-html="msg"></p>
+        <p v-text="msg"></p>
+    </div>
+    <hr>
+    <p>v-clock解决因网速慢,显示{{msg}}的问题,本质就是修改样式,注意style标签的内容</p>
+    <div id="cloak">
+        <p v-cloak>{{msg}}</p>
+    </div>
+    <script>
+        var text = new Vue({
+            el: '#text',
+            data: {
+                msg: 'text'
+            }
+        })
+        var html = new Vue({
+            el: '#html',
+            data: {
+                msg: '<p>哈哈</p>'
+            }
+        })
+        var cloak = new Vue({
+            el: '#cloak',
+            data: {
+                msg: 'cloak'
+            }
+        })
+    </script>
+</body>
+
+</html>

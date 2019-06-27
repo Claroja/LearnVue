@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="keyup">
+        <h1>v-model和keyup实现数据监听</h1>
+        <p>v-model将view里的文本框和model里的变量firtname,lastname进行绑定,用keyup监听键盘事件
+            更新fullname变量,而v-mode将fullname与view文本框绑定.
+        </p>
+        <input type="text" v-model="firstname" @keyup="getFullName">+
+        <input type="text" v-model="lastname" @keyup="getFullName">=
+        <input type="text" v-model="fullname">
+    </div>
+    
+    <div id="watch">
+        <h1>watch实现数据监听</h1>
+        <p>v-model将view里的文本框和model里的变量firtname,lastname进行绑定,
+            watch会监听相应变量的变化,如果发生变化就会触发函数,
+            函数里两个参数newVal是当前的值,oldVal是上一次的值.
+        </p>
+        <input type="text" v-model="firstname" >+
+        <input type="text" v-model="lastname" >=
+        <input type="text" v-model="fullname">
+    </div>
+
+    <div id="watchrouter">
+        <h1>watch的优点</h1>
+        <p>1.有newVal和oldVal两个参数
+            2.可以直接监听参数变化,而不需要与标签绑定(keyup必须监听标签),所以wath可以监听路由变化
+        </p>
+    </div>
+
+
+    <div id="computed">
+        <h1>computed监听数据</h1>
+        <p>在computed里包含的变量,一但发生变化都会被监听到,
+            computed可以看成是高级的watch
+        </p>
+        <input type="text" v-model="firstname" >+
+        <input type="text" v-model="lastname" >=
+        <input type="text" v-model="fullname">
+    </div>
+</body>
+</html>

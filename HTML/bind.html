@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.bootcss.com/vue/2.6.10/vue.js"></script>
+    <style>
+        .red {
+            color: red;
+        }
+
+        .blue {
+            color: blue;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>v-bind</h1>
+    <p>v-bind用来将标签的属性与vue的data数据进行绑定,v-bind后的""里面会当成js表达式解析,msg是一个变量,所以可以拼贴字符串</p>
+    <div id="bind">
+        <input type="button" v-bind:value="msg+'后拼贴字符串'">
+    </div>
+    <hr>
+
+    <p>通过v-bind可以方便操作class</p>
+    <div id="class">
+        <p :class="['red',{'blue':flag}]">更改颜色</p>
+    </div>
+    <hr>
+
+    <p>通过v-bind可以方便操作style</p>
+    <div id="style">
+        <p :style="{color:'red'}">更改颜色</p>
+    </div>
+    <hr>
+    <script>
+        var bind = new Vue({
+            el: '#bind',
+            data: {
+                msg: '绑定'
+            }
+        })
+
+        var _class = new Vue({
+            el: '#class',
+            data: {
+                flag: true
+            }
+        })
+
+        var style = new Vue({
+            el: '#style',
+        })
+    </script>
+</body>
+
+</html>

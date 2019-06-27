@@ -6,6 +6,7 @@ import Vue from '../node_modules/vue/dist/vue.js'
 import VueRouter from 'vue-router'
 Vue.use(VueRouter)
 
+//创建路由,并在vue对象中注册
 var routerObj1 = new VueRouter({
     routes:[
         {path: '/login1', component:{template:'<p>登录1</p>'}},
@@ -18,7 +19,7 @@ var router = new Vue({
     router: routerObj1
 })
 
-
+//重定向redirect
 var routerObj2 = new VueRouter({
     routes:[
         {path: '/',redirect:'/login2'},
@@ -39,8 +40,8 @@ var routerObj3 = new VueRouter({
         {path: '/register3', component:{template:'<p>注册3</p>'}}
     ]
 })
-
-var redirect = new Vue({
+//传参
+var query = new Vue({
     el: '#query',
     router: routerObj3
 })
@@ -53,11 +54,13 @@ var routerObj4 = new VueRouter({
     ]
 })
 
-var redirect = new Vue({
+var params = new Vue({
     el: '#params',
     router: routerObj4
 })
 
+
+//子路由
 var routerObj5 = new VueRouter({
     routes:[
         {
@@ -71,15 +74,16 @@ var routerObj5 = new VueRouter({
     ]
 })
 
-var redirect = new Vue({
+var children = new Vue({
     el: '#children',
     router: routerObj5
 })
 
-
+//多组件同时展示
 var routerObj6 = new VueRouter({
     routes:[
-        {path: '/all',components:{
+        {path: '/all',
+        components:{
             'default': {template:'<p>默认的</p>'},
             'left':{template:'<P>左边</p>'},
             'right':{template:'<p>右边</p>'}
@@ -87,8 +91,8 @@ var routerObj6 = new VueRouter({
     ],
 })
 
-var many = new Vue({
-    el: '#many',
+var multi = new Vue({
+    el: '#multi',
     router: routerObj6
 })
 
