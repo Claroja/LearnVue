@@ -30,6 +30,28 @@
         <router-link to="/register1" tag='span'>注册1</router-link>
         <router-view></router-view>
     </div>
+    <script>
+        //创建路由,并在vue对象中注册
+        var routerObj1 = new VueRouter({
+            routes: [{
+                    path: '/login1',
+                    component: {
+                        template: '<p>登录1</p>'
+                    }
+                },
+                {
+                    path: '/register1',
+                    component: {
+                        template: '<p>注册1</p>'
+                    }
+                }
+            ]
+        })
+        var router = new Vue({
+            el: '#router',
+            router: routerObj1
+        })
+    </script>
     <hr>
 
     <div id="redirect">
@@ -39,6 +61,32 @@
         <router-link to="/register2" tag='span'>注册2</router-link>
         <router-view></router-view>
     </div>
+    <script>
+        //重定向redirect
+        var routerObj2 = new VueRouter({
+            routes: [{
+                    path: '/',
+                    redirect: '/login2'
+                },
+                {
+                    path: '/login2',
+                    component: {
+                        template: '<p>登录2</p>'
+                    }
+                },
+                {
+                    path: '/register2',
+                    component: {
+                        template: '<p>注册2</p>'
+                    }
+                }
+            ]
+        })
+        var redirect = new Vue({
+            el: '#redirect',
+            router: routerObj2
+        })    
+    </script>
     <hr>
 
     <h1>参数传递</h1>
@@ -50,6 +98,29 @@
         <router-view></router-view>
     </div>
 
+    <script>
+        var routerObj3 = new VueRouter({
+            routes: [{
+                    path: '/login3',
+                    component: {
+                        template: '<p>登录3 query:{{$route.query.id}}</p>'
+                    }
+                },
+                {
+                    path: '/register3',
+                    component: {
+                        template: '<p>注册3</p>'
+                    }
+                }
+            ]
+        })
+        //传参
+        var query = new Vue({
+            el: '#query',
+            router: routerObj3
+        })    
+    </script>
+
     <div id="params">
         <h2>路由params传参</h2>
         <p>通过路由进行传参,路由的规则不需要修改,id=10中的id不影响路由规则,就是一个参数</p>
@@ -57,6 +128,28 @@
         <router-link to="/register4" tag='span'>注册4</router-link>
         <router-view></router-view>
     </div>
+    <script>
+        var routerObj4 = new VueRouter({
+            routes: [{
+                    path: '/login4/:id',
+                    component: {
+                        template: '<p>登录4 params:{{$route.params.id}}</p>'
+                    }
+                },
+                {
+                    path: '/register4',
+                    component: {
+                        template: '<p>注册4</p>'
+                    }
+                }
+            ]
+        })
+
+        var params = new Vue({
+            el: '#params',
+            router: routerObj4
+        })    
+    </script>
     <hr>
 
 
@@ -78,122 +171,7 @@
             <router-view></router-view>
         </div>
     </template>
-    <hr>
-
-
-    <div id="multi">
-        <h1>多组件同时显示</h1>
-        <p>多组件同时显示,需要给不同的router-view添加name属性,一个router-view只对应一个component</p>
-        <router-link to="/all">显示所有</router-link>
-        <router-view></router-view>
-        <router-view name="left"></router-view>
-        <router-view name="right"></router-view>
-    </div>
-    <hr>
-
-    <div id="active">
-        <h1>配置激活路由</h1>
-        <p>使用css来控制激活路由的样式</p>
-        <router-link to="/login7">登录7</router-link>
-        <router-link to="/register7" tag='span'>注册7</router-link>
-        <router-view></router-view>
-    </div>
-    <hr>
-
     <script>
-        //创建路由,并在vue对象中注册
-        var routerObj1 = new VueRouter({
-            routes: [{
-                    path: '/login1',
-                    component: {
-                        template: '<p>登录1</p>'
-                    }
-                },
-                {
-                    path: '/register1',
-                    component: {
-                        template: '<p>注册1</p>'
-                    }
-                }
-            ]
-        })
-
-        var router = new Vue({
-            el: '#router',
-            router: routerObj1
-        })
-
-        //重定向redirect
-        var routerObj2 = new VueRouter({
-            routes: [{
-                    path: '/',
-                    redirect: '/login2'
-                },
-                {
-                    path: '/login2',
-                    component: {
-                        template: '<p>登录2</p>'
-                    }
-                },
-                {
-                    path: '/register2',
-                    component: {
-                        template: '<p>注册2</p>'
-                    }
-                }
-            ]
-        })
-
-        var redirect = new Vue({
-            el: '#redirect',
-            router: routerObj2
-        })
-
-
-        var routerObj3 = new VueRouter({
-            routes: [{
-                    path: '/login3',
-                    component: {
-                        template: '<p>登录3 query:{{$route.query.id}}</p>'
-                    }
-                },
-                {
-                    path: '/register3',
-                    component: {
-                        template: '<p>注册3</p>'
-                    }
-                }
-            ]
-        })
-        //传参
-        var query = new Vue({
-            el: '#query',
-            router: routerObj3
-        })
-
-
-        var routerObj4 = new VueRouter({
-            routes: [{
-                    path: '/login4/:id',
-                    component: {
-                        template: '<p>登录4 params:{{$route.params.id}}</p>'
-                    }
-                },
-                {
-                    path: '/register4',
-                    component: {
-                        template: '<p>注册4</p>'
-                    }
-                }
-            ]
-        })
-
-        var params = new Vue({
-            el: '#params',
-            router: routerObj4
-        })
-
-
         //子路由
         var routerObj5 = new VueRouter({
             routes: [{
@@ -220,8 +198,21 @@
         var children = new Vue({
             el: '#children',
             router: routerObj5
-        })
+        })    
+    
+    </script>
+    <hr>
 
+
+    <div id="multi">
+        <h1>多组件同时显示</h1>
+        <p>多组件同时显示,需要给不同的router-view添加name属性,一个router-view只对应一个component</p>
+        <router-link to="/all">显示所有</router-link>
+        <router-view></router-view>
+        <router-view name="left"></router-view>
+        <router-view name="right"></router-view>
+    </div>
+    <script>
         //多组件同时展示
         var routerObj6 = new VueRouter({
             routes: [{
@@ -243,10 +234,20 @@
         var multi = new Vue({
             el: '#multi',
             router: routerObj6
-        })
+        })    
+    </script>
+    <hr>
 
+    <div id="active">
+        <h1>配置激活路由</h1>
+        <p>使用css来控制激活路由的样式</p>
+        <router-link to="/login7">登录7</router-link>
+        <router-link to="/register7" tag='span'>注册7</router-link>
+        <router-view></router-view>
+    </div>
+    <hr>
 
-
+    <script>
         var routerObj7 = new VueRouter({
             routes: [{
                     path: '/',

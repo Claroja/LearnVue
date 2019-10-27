@@ -30,6 +30,32 @@
             <p>通过template创建的局部组件comt2</p>
         </div>
     </template>
+    <script>
+    //组件基本调用可以直接在js里写,也可以在html里写好再调用
+    Vue.component('com1', {
+        template: '<p>全局组件com1</p>'
+    })
+
+    Vue.component('comt1', {
+        template: '#temp1' //直接调用html里的模板
+    })
+
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            msg: 'hello'
+        },
+        components: {
+            com2: {
+                template: '<p>局部组件com2</p>'
+            },
+            comt2: {
+                template: '#temp2'
+            }
+        }
+    })
+    </script>
+
     <hr>
 
     <h1>组件成员</h1>
@@ -44,6 +70,27 @@
             <p>{{num}}</p>
         </div>
     </template>
+    <script>
+    //组件成员
+    var data = new Vue({
+        el: '#data',
+        components: {
+            com: {
+                template: '#temp3',
+                data: function () {
+                    return {
+                        num: 0
+                    } //返回值既是成员变量,可以直接用
+                },
+                methods: {
+                    count() {
+                        this.num++
+                    }
+                }
+            },
+        }
+    })
+    </script>
     <hr>
 
     <div id=prop>
@@ -54,6 +101,21 @@
         </p>
         <com :parentmsg="msg"></com>
     </div>
+    <script>
+    //component引用其vue对象的数据
+    var prop = new Vue({
+        el: '#prop',
+        data: {
+            msg: '123'
+        },
+        components: {
+            com: {
+                template: '<p>子组件,引用父组件的data数据:{{parentmsg}}</p>',
+                props: ['parentmsg']
+            },
+        }
+    })
+    </script>
     <hr>
 
     <div id=emit>
@@ -71,6 +133,26 @@
             <input type="button" value="子组件按钮" @click="myclick">
         </div>
     </template>
+    <script>
+    var emit = new Vue({
+        el: '#emit',
+        methods: {
+            show: function () {
+                alert('父对象的show方法')
+            }
+        },
+        components: {
+            com: {
+                template: '#emitt',
+                methods: {
+                    myclick() {
+                        this.$emit('parentfn')
+                    }
+                }
+            },
+        }
+    })
+    </script>
     <hr>
 
 
@@ -84,101 +166,21 @@
     </div>
 
     <script>
-        //组件基本调用可以直接在js里写,也可以在html里写好再调用
-        Vue.component('com1', {
-            template: '<p>全局组件com1</p>'
-        })
-
-        Vue.component('comt1', {
-            template: '#temp1' //直接调用html里的模板
-        })
-
-        var vm = new Vue({
-            el: '#app',
-            data: {
-                msg: 'hello'
+    //组件切换(了解)
+    var change = new Vue({
+        el: '#change',
+        data: {
+            comName: 'login'
+        },
+        components: {
+            login: {
+                template: '<p>登录组件</p>',
             },
-            components: {
-                com2: {
-                    template: '<p>局部组件com2</p>'
-                },
-                comt2: {
-                    template: '#temp2'
-                }
+            register: {
+                template: '<p>注册组件</p>'
             }
-        })
-
-        //组件成员
-        var data = new Vue({
-            el: '#data',
-            components: {
-                com: {
-                    template: '#temp3',
-                    data: function () {
-                        return {
-                            num: 0
-                        } //返回值既是成员变量,可以直接用
-                    },
-                    methods: {
-                        count() {
-                            this.num++
-                        }
-                    }
-                },
-            }
-        })
-
-        //component引用其vue对象的数据
-        var prop = new Vue({
-            el: '#prop',
-            data: {
-                msg: '123'
-            },
-            components: {
-                com: {
-                    template: '<p>子组件,引用父组件的data数据:{{parentmsg}}</p>',
-                    props: ['parentmsg']
-                },
-            }
-        })
-
-
-        var emit = new Vue({
-            el: '#emit',
-            methods: {
-                show: function () {
-                    alert('父对象的show方法')
-                }
-            },
-            components: {
-                com: {
-                    template: '#emitt',
-                    methods: {
-                        myclick() {
-                            this.$emit('parentfn')
-                        }
-                    }
-                },
-            }
-        })
-
-
-
-        //组件切换(了解)
-        var change = new Vue({
-            el: '#change',
-            data: {
-                comName: 'login'
-            },
-            components: {
-                login: {
-                    template: '<p>登录组件</p>',
-                },
-                register: {
-                    template: '<p>注册组件</p>'
-                }
-            }
-        })
+        }
+    })
     </script>
 </body>
 
